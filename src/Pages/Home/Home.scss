@@ -1,0 +1,107 @@
+.HomeWarpper {
+    margin-top: 6rem;
+
+    .firstSec {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        justify-content: space-between;
+        background: #fff;
+        padding: 40px 0px;
+
+        .card {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 16px;
+            background: #FFF;
+            box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.12);
+            width: 375px;
+            height: 103px;
+
+            .iconandtxt {
+                display: flex;
+                flex-direction: row-reverse;
+                margin-right: 31px;
+
+                p {
+                    color: #969BA1;
+                    text-align: right;
+                    font-family: SST Arabic;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 140%;
+                    letter-spacing: -0.16px;
+                    margin-right: 23px;
+                }
+            }
+
+            .number {
+                margin-left: 31px;
+                color: var(--black, #003462);
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 140%;
+                letter-spacing: -0.24px;
+            }
+        }
+    }
+
+    .secSec {
+        .title {
+            display: flex;
+            justify-content: flex-end;
+            color: #003462;
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 140%;
+            letter-spacing: -0.28px;
+        }
+
+        .sec-cards {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-around;
+            margin-top: 49px;
+
+            .card {
+                width: 276px;
+                height: 158px;
+                flex-shrink: 0;
+                border-radius: 16px;
+                background: #FFF;
+                box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.06);
+
+                // display: flex;
+                // flex-direction: column;
+                // align-items: center;
+                // justify-content: center;
+                .inner {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 3rem;
+
+                    svg {
+                        fill: white;
+                        scale: 1.5;
+                        background: #5DBB67;
+                        border-radius: 50%;
+                        padding: 3px;
+                        margin-bottom: 15px;
+                    }
+                }
+
+                .outer {
+                    margin-top: 0.6rem;
+                    margin-left: 16px;
+                }
+            }
+        }
+    }
+}
