@@ -6,25 +6,70 @@ import SearchIcon from '@mui/icons-material/Search';
 import "./property.scss"
 import { Button, Container, MenuItem, Select } from '@mui/material'
 import Card from '../../Components/Card/Card';
+import DummyImg from "../../Assets/Images/Femal.png"
+import CamelLogo from "../../Assets/Logo/CamelLogo"
+import CardsWithImg from '../../Components/CardsWithImg/CardsWithImg';
 const Properity = () => {
   const cardData = [
     {
-      id:1,
-      img:"anylink",
-      title:"الدانه",
-      type:"انثي كبيره"
-    }
+      id: 1,
+      img: "anylink",
+      title: "الدانه",
+      type: "انثي كبيره"
+    },
+    {
+      id: 2,
+      img: "anylink",
+      title: "ضاحي",
+      type: "ذكر كبير"
+    },
+    {
+      id: 3,
+      img: "anylink",
+      title: "الروميساء",
+      type: "انثي صغيره"
+    },
+    {
+      id: 4,
+      img: "anylink",
+      title: "الدانه",
+      type: "ذكر كبير"
+    },
+    {
+      id: 5,
+      img: "anylink",
+      title: "ضاحي",
+      type: "ذكر كبير"
+    },
+    {
+      id: 6,
+      img: "anylink",
+      title: "الروميساء",
+      type: "انثي كبيره"
+    },
+    {
+      id: 7,
+      img: "anylink",
+      title: "الدانه",
+      type: "انثي كبيره"
+    },
+    {
+      id: 8,
+      img: "anylink",
+      title: "الدانه",
+      type: "ذكر كبير"
+    },
   ]
   return (
     <div className="propWrapper">
       <div className='title'>
+      <Container>
         <h5>
           الاملاك
         </h5>
-
+        </Container>
       </div>
       <Container>
-
         <div>
           <div>
             <Button sx={{
@@ -53,13 +98,18 @@ const Properity = () => {
 
             </Select>
           </div>
+          <div className='cardsContainer'>
+            {
+              cardData.map((item) => (
+                <CardsWithImg item={item} />
+              ))
+            }
+          </div>
         </div>
-
         <div>
           <Card />
         </div>
       </Container>
-
     </div>
   )
 }
