@@ -6,8 +6,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import "./property.scss"
 import { Button, Container, MenuItem, Select } from '@mui/material'
 import Card from '../../Components/Card/Card';
-import DummyImg from "../../Assets/Images/Femal.png"
-import CamelLogo from "../../Assets/Logo/CamelLogo"
 import CardsWithImg from '../../Components/CardsWithImg/CardsWithImg';
 const Properity = () => {
   const cardData = [

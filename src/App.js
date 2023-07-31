@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar/Navbar';
 // pages
 import Home from './Pages/Home/Home';
 import Properity from './Pages/Properity/Properity';
+import SingleProp from './Pages/SingleProp/SingleProp';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="prop" element={<Properity />} />
+        <Route path="prop/:id" element={<SingleProp />} />
         {/* <Route path="dashboard" element={<Dashboard />} /> */}
         {/* <Route path="*" element={<NoMatch />} /> */}
       </Routes>
