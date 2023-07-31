@@ -23,7 +23,7 @@ const Navbar = () => {
     const routes = [
         { id: 6, title: "من نحن", path: "/aboutus" },
         { id: 5, title: "تواصل معنا", path: "/contactus" },
-        { id: 4, title: "المعاملات", path: "/works" },
+        { id: 4, title: "المعاملات", path: "/transactions" },
         { id: 3, title: "الخدمات", path: "/services" },
         { id: 2, title: "الاملاك", path: "/prop" },
         { id: 1, title: "الرئيسيه", path: "/" },
@@ -48,7 +48,7 @@ const Navbar = () => {
                             ))}
                         </ul>
                         <div className='last-sec'>
-                            <div className='user-container'>
+                            <Link to={"/profile"} className='user-container'>
                                 <div className='link'>
                                     <KeyboardArrowDownIcon />
                                 </div>
@@ -56,7 +56,7 @@ const Navbar = () => {
                                     اسامه عسكر
                                 </p>
                                 <img src={Img} alt="user" />
-                            </div>
+                            </Link>
                             <SearchIcon />
                         </div>
                     </nav>
