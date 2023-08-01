@@ -1,4 +1,4 @@
-.servicesWrapper{
+.servicesWrapper {
     margin-top: 4.6rem;
 
     .title {
@@ -11,6 +11,192 @@
             font-style: normal;
             font-weight: 700;
             padding: 20px 0px;
+        }
+    }
+
+    .cardWrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        margin-top: 49px;
+
+        .soon {
+            ::before {
+                content: 'قريبا';
+                position: absolute;
+                top: 12px;
+                left: 19px;
+                background: red;
+                color: white;
+                padding: 5px;
+                border-radius: 8px;
+            }
+        }
+
+        .card2 {
+            position: relative;
+            width: 276px;
+            height: 158px;
+            flex-shrink: 0;
+            border-radius: 16px;
+            background: #FFF;
+            box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+
+            .inner {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-top: 3rem;
+
+                svg {
+                    fill: white;
+                    scale: 1.5;
+                    background: #5DBB67;
+                    border-radius: 50%;
+                    padding: 3px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .outer {
+                margin-top: 0.6rem;
+                margin-left: 16px;
+            }
+        }
+
+        .active {
+            background-color: #003462;
+            color: white
+        }
+    }
+
+
+    .lastSectionsWrapper {
+        margin-top: 1rem;
+
+        // margin-bottom: 2rem;
+        .title2 {
+            text-align: end;
+            color: var(--black, #003462);
+            font-feature-settings: 'clig' off, 'liga' off;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            /* 83.333% */
+            letter-spacing: -0.24px;
+        }
+
+        .buyCardWrapper {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-around;
+            gap: 20px;
+            border-radius: 16px;
+            border: 1px solid #E3E3E3;
+            background: #FFF;
+            margin-top: 2rem;
+            padding: 1.5rem;
+
+            .signleBuy {
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                text-align: end;
+
+                button {
+                    margin-top: 1rem;
+                }
+            }
+
+        }
+
+        .buyCardWrapper2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-radius: 16px;
+            border: 1px solid #E3E3E3;
+            background: #FFF;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            gap: 20px;
+
+            .singleCardBuy {
+                padding: 10px;
+                border-radius: 16px;
+                background: #FFF;
+                box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.06);
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-around;
+
+                .firstCol {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+
+                    .buyerName {
+                        color: var(--black, #003462);
+                        text-align: center;
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 20px;
+                        /* 125% */
+                        letter-spacing: -0.24px;
+                    }
+
+                    .camelName {
+                        color: var(--main-color, #5DBB67);
+                        text-align: right;
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px;
+                        /* 125% */
+                        letter-spacing: -0.24px;
+                    }
+
+                    .iconWrapper {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        justify-content: space-around;
+
+                        .barcode {
+                            color: var(--gray, #969BA1);
+                            text-align: right;
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 20px;
+                            /* 142.857% */
+                            letter-spacing: -0.24px;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+
+                .secCol {
+               
+                    .date {
+                        color: var(--gray, #969BA1);
+                        text-align: center;
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px;
+                        /* 153.846% */
+                        letter-spacing: -0.24px;
+                    }
+                }
+            }
         }
     }
 }
