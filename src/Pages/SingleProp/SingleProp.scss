@@ -11,6 +11,11 @@
             font-style: normal;
             font-weight: 700;
             padding: 20px 0px;
+
+            a {
+                color: #5DBB67;
+
+            }
         }
     }
 
@@ -46,8 +51,10 @@
                 flex-direction: column;
                 align-items: flex-end;
             }
-            .singleItem-single{
+
+            .singleItem-single {
                 padding: 10px 0px;
+
                 .label {
                     color: var(--gray, #969BA1);
                     text-align: right;
@@ -96,7 +103,7 @@
                     border-radius: 6px;
                     background: #5DBB67;
                 }
-                
+
             }
         }
     }

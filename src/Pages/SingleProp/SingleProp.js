@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import DummyImg from "../../Assets/Images/Femal.png"
 import DummyImg2 from "../../Assets/Images/camel2.png"
 // styles
@@ -26,7 +26,7 @@ const SingleProp = () => {
             <div className='title'>
                 <Container>
                     <h5>
-                    الاملاك  {" > "}  {MyData.name} 
+                    <Link to="/prop">الاملاك</Link>  {" > "}  {MyData.name} 
                     </h5>
                 </Container>
             </div>
