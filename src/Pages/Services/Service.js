@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
@@ -118,7 +117,7 @@ const Service = () => {
         </DialogTitle>
         <DialogContent sx={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
           <img width={128} height={88} src={Anaam} alt="user" />
-          <Typography gutterBottom sx={{ marginTop: 4, marginBottom: 4 }}>
+          <Typography gutterBottom sx={{ marginTop: 4, marginBottom: 4 , fontFamily:"inherit" }}>
             بالضغط على تأكيد فانت توافق على نقل الملكية الخاصة بك
           </Typography>
           <Box sx={{
@@ -128,7 +127,7 @@ const Service = () => {
             <Button autoFocus sx={{
               borderRadius: 3,
               background: "#5DBB67",
-              fontSize: 16
+              fontSize: 16, fontFamily:"inherit"
             }} variant="contained" onClick={handleClose}>
               تأكيد
             </Button>
@@ -259,7 +258,7 @@ const Service = () => {
                     <Button onClick={handleClickOpen} sx={{
                       borderRadius: 3,
                       background: "#5DBB67",
-                      fontSize: 16
+                      fontSize: 16, fontFamily:"inherit"
                     }} variant="contained" color="success">ارسال</Button>
 
                   </div>

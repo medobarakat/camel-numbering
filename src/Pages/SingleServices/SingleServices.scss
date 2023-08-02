@@ -1,0 +1,115 @@
+.singleServicesWrapper {
+    margin-top: 4.6rem;
+
+    .title {
+        background: #5dbb6747;
+
+        h5 {
+            color: #5DBB67;
+            text-align: right;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            padding: 20px 0px;
+
+            a {
+                color: #5DBB67;
+
+            }
+        }
+    }
+
+    .lowerContent {
+        display: flex;
+        justify-content: space-around;
+
+        .LeftContent {
+            img {
+                width: 395px;
+                height: 338px;
+                flex-shrink: 0;
+            }
+        }
+
+        .rightContent {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row-reverse;
+            border-radius: 16px;
+            background: #FFF;
+            box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.06);
+            width: 60%;
+            align-items: flex-start;
+
+            .col2 {
+                margin-right: 50px;
+            }
+
+            .col,
+            .col2 {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            .singleItem-single {
+                padding: 10px 0px;
+
+                .label {
+                    color: var(--gray, #969BA1);
+                    text-align: right;
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    /* 125% */
+                    letter-spacing: -0.24px;
+                }
+            }
+
+            .singleItem {
+                display: flex;
+                justify-content: space-around;
+                flex-direction: row-reverse;
+
+                .label {
+                    color: var(--gray, #969BA1);
+                    text-align: right;
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    /* 125% */
+                    letter-spacing: -0.24px;
+                }
+
+                .fromData {
+                    color: var(--black, #003462);
+                    text-align: right;
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    /* 125% */
+                    letter-spacing: -0.24px;
+                }
+
+                .fromDataStatusSucess {
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 6px;
+                    background: #5DBB67;
+                }
+
+            }
+        }
+    }
+    .buttonContainer{
+        width: 100%;
+        margin-top: 32px;
+        margin-left: 32px;
+    }
+}

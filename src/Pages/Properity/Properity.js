@@ -73,7 +73,7 @@ const Properity = () => {
             <Button sx={{
               borderRadius: 2,
               backgroundColor: "#5dbb67",
-              marginRight: 2
+              marginRight: 2, fontFamily:"inherit"
             }}><SearchIcon sx={{ fill: 'white' }} /></Button>
             <Select
               IconComponent={KeyboardArrowDownIcon}

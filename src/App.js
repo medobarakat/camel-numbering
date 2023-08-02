@@ -10,6 +10,9 @@ import SingleProp from './Pages/SingleProp/SingleProp';
 import Profile from './Pages/Profile/Profile';
 import Transactions from './Pages/Transactions/Transactions';
 import Service from './Pages/Services/Service';
+import SingleServices from './Pages/SingleServices/SingleServices';
+import ContactUs from './Pages/ContactUs/ContactUs';
+import AboutUs from './Pages/AboutUs/AboutUs';
 
 function App() {
   return (
@@ -23,8 +26,9 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="transactions" element={<Transactions />} />
         <Route path="services" element={<Service />} />
-
- 
+        <Route path="services/:id" element={<SingleServices />} />
+        <Route path="contactus" element={<ContactUs />} />
+        <Route path="aboutus" element={<AboutUs />} />
         {/* <Route path="dashboard" element={<Dashboard />} /> */}
         {/* <Route path="*" element={<NoMatch />} /> */}
       </Routes>
