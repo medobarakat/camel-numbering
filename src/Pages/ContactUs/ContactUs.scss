@@ -26,11 +26,31 @@
             align-items: center;
             justify-content: center;
             flex-grow: 0.7;
-
+            position: relative;
             img {
                 width: 395px;
                 height: 338px;
                 flex-shrink: 0;
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                right: -15px;
+                bottom: -17px;
+                width: 72px;
+                height: 72px;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: -17px;
+                width: 72px;
+                height: 72px;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
             }
         }
 
