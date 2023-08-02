@@ -16,6 +16,7 @@ import ScanBarCode from "../../Assets/Logo/ScanBarCode"
 
 //images
 import Anaam from "../../Assets/Images/Anaam.png"
+import Empty from "../../Assets/Images/empty.png"
 
 import { Badge, Box, Button, Container, TextField, Toolbar } from '@mui/material'
 // styles
@@ -98,7 +99,8 @@ const Service = () => {
     },
   ];
 
-
+  // const buyData = [
+  // ]
 
 
   return (
@@ -153,7 +155,7 @@ const Service = () => {
                   backgroundColor: '#003462',
                   padding: 1
                 },
-              }} badgeContent={3} color="secondary">
+              }} badgeContent={buyData.length} color="secondary">
                 <ShopBag2 />
               </Badge>
               شراء ملكيه
@@ -189,30 +191,49 @@ const Service = () => {
           {
             activeCard === 1 && (
               <>
-                <div className='title2'>
-                  خدمة شراء ملكية
-                </div>
-                <div className='buyCardWrapper2'>
-                    {
-                      buyData.map((item) => (
-                        <Link className='singleCardBuy' to={`/buy/${item.id}`} key={item.id}>
-                          <div className='firstCol'>
-                            <p className='buyerName'>{item.name}</p>
-                            <p className='camelName'>{item.camelName}</p>
-                            <div className='iconWrapper'>
-                              <ScanBarCode />
-                              <span className='barcode'>{item.barcode}</span>
-                            </div>
-                          </div>
-                          <div className='secCol'>
-                            <p className='date'>
-                              {item.date}
-                            </p>
-                          </div>
-                        </Link>
-                      ))
-                    }
-                </div>
+                {
+                  buyData.length > 0 ? (
+                    <>
+                      <div className='title2'>
+                        خدمة شراء ملكية
+                      </div>
+                      <div className='buyCardWrapper2'>
+                        {
+                          buyData.map((item) => (
+                            <Link className='singleCardBuy' to={`/services/${item.id}`} key={item.id}>
+                              <div className='firstCol'>
+                                <p className='buyerName'>{item.name}</p>
+                                <p className='camelName'>{item.camelName}</p>
+                                <div className='iconWrapper'>
+                                  <ScanBarCode />
+                                  <span className='barcode'>{item.barcode}</span>
+                                </div>
+                              </div>
+                              <div className='secCol'>
+                                <p className='date'>
+                                  {item.date}
+                                </p>
+                              </div>
+                            </Link>
+                          ))
+                        }
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className='noDataWrapper'>
+                        <img src={Empty} alt='empty' width={168} height={168}/>
+                        <p className='emptyTxt'>
+                          عفوا لا يوجد طلبات شراء ملكيه
+                        </p>
+                        <Link to="/" className='LinkStyle' >الرجوع للرئيسية</Link>
+
+
+                      </div>
+                    </>
+                  )
+                }
+
               </>
             )}
           {
