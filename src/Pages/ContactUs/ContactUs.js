@@ -2,6 +2,7 @@ import React from 'react'
 
 // styles
 import "./ContactUs.scss"
+import { Container } from '@mui/material'
 
 const ContactUs = () => {
     return (

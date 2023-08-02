@@ -2,6 +2,7 @@ import React from 'react'
 
 // styles
 import "./AboutUs.scss"
+import { Container } from '@mui/material'
 
 const AboutUs = () => {
     return (
