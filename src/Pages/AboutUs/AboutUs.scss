@@ -14,5 +14,109 @@
         }
     }
 
+    .firstContent {
+        display: flex;
+        flex-direction: row-reverse;
 
+        .imgContainer {
+            border-radius: 0px 16px 16px 0px;
+            border: 1px solid #E3E3E3;
+            background: #FFF;
+        }
+
+        .textWrapper {
+            border-radius: 16px 0px 0px 16px;
+            background: var(--black, #003462);
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            &::before{
+                content: '';
+                position: absolute;
+                left: -15px;
+                bottom: -17px;
+                width: 72px;
+                height: 72px;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+;
+            }
+
+            p {
+                color: #FFF;
+                text-align: right;
+                font-feature-settings: 'clig' off, 'liga' off;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 32px;
+                letter-spacing: -0.24px;
+                padding: 50px;
+            }
+        }
+    }
+
+    .lastContent {
+        .Lasttitle {
+            text-align: end;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 13px;
+                background-color: #5DBB67;
+                top: 12px;
+                right: 75px;
+            }
+
+            p {
+                color: var(--black, #003462);
+                text-align: end;
+                font-feature-settings: 'clig' off, 'liga' off;
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+                letter-spacing: -0.24px;
+            }
+        }
+
+        .aboutUsSteps {
+            ul {
+                text-align: end;
+
+                li {
+                    position: relative;
+                    margin-right: 8px;
+                    margin: 30px 20px;
+                    color: var(--black, #003462);
+                    text-align: right;
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 32px;
+                    /* 200% */
+                    letter-spacing: -0.24px;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        width: 8px;
+                        height: 8px;
+                        background-color: #5DBB67;
+                        right: -18px;
+                        border-radius: 50px;
+                        top: 15px;
+                    }
+
+                }
+            }
+        }
+
+
+    }
 }
