@@ -20,6 +20,13 @@
         margin-bottom: 3rem;
 
         .LeftContent {
+            border-radius: 16px;
+            display: flex;
+            background: #003462;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 0.7;
+
             img {
                 width: 395px;
                 height: 338px;
