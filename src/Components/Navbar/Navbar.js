@@ -21,7 +21,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const location = useLocation();
-    const pathsWithoutNavbar = ["/login"]; // Add other paths as needed
+    const pathsWithoutNavbar = ["/login","/signup"]; // Add other paths as needed
     const showNavbar = !pathsWithoutNavbar.includes(location.pathname);
     const routes = [
         { id: 6, title: "من نحن", path: "/aboutus" },

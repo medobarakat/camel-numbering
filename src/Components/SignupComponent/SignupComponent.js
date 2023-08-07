@@ -1,10 +1,10 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, TextField } from '@mui/material';
-import "./LoginComponent.scss"
+import "./SignupComponent.scss"
 import * as Yup from 'yup'; 
 import { Link } from 'react-router-dom';
-const LoginComponent = () => {
+const SignupComponent = () => {
     const initialValues = {
         username: '',
         password: '',
@@ -18,7 +18,7 @@ const LoginComponent = () => {
         console.log(values);
     };
     return (
-        <div className="LoginComponentWrapper">
+        <div className="SignupComponentWrapper">
             <h5>
                 تسجيل الدخول
             </h5>
@@ -67,4 +67,4 @@ const LoginComponent = () => {
     )
 }
 
-export default LoginComponent
+export default SignupComponent

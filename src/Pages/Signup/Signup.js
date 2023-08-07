@@ -1,18 +1,18 @@
 import React from 'react';
-import "./login.scss";
 import BgImg from "../../Assets/Images/mainBg.png";
 import LoginNavbar from '../../Components/LoginNavbar/LoginNavbar';
-import LoginComponent from '../../Components/LoginComponent/LoginComponent';
+import SignupComponent from '../../Components/SignupComponent/SignupComponent';
 import { Box } from '@mui/material';
 import Man from "../../Assets/Logo/Man"
 import { Link } from 'react-router-dom';
-const Login = () => {
+import "./Signup.scss";
+const Signup = () => {
   const backgroundStyle = {
     backgroundImage: `url(${BgImg})`,
   };
 
   return (
-    <div className='LoginWrapper' style={backgroundStyle}>
+    <div className='SignupWrapper' style={backgroundStyle}>
       <LoginNavbar />
       <Box
           sx={{
@@ -20,7 +20,7 @@ const Login = () => {
             margin: '0px auto',
           }}
         >
-          <LoginComponent />
+          <SignupComponent />
           <Link className='IconWithLink'>
             <Man />
             <p>انشاء حساب جديد</p>
@@ -30,4 +30,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

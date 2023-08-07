@@ -14,6 +14,7 @@ import SingleServices from './Pages/SingleServices/SingleServices';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import Login from './Pages/Login/Login';
+import Signup from './Pages/Signup/Signup';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="contactus" element={<ContactUs />} />
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
 
         {/* <Route path="dashboard" element={<Dashboard />} /> */}
         {/* <Route path="*" element={<NoMatch />} /> */}
