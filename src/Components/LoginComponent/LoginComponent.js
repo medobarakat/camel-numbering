@@ -49,7 +49,7 @@ const LoginComponent = () => {
                         <ErrorMessage name="password" component="div" />
                     </div>
                     <div className='passReset'>
-                        <Link>
+                        <Link to={"/forgetpassword"}>
                         اعادة تعيين / تغيير كلمة المرور
                         </Link>
                     </div>

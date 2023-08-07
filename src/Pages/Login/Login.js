@@ -21,7 +21,7 @@ const Login = () => {
           }}
         >
           <LoginComponent />
-          <Link className='IconWithLink'>
+          <Link to={"/signup"} className='IconWithLink'>
             <Man />
             <p>انشاء حساب جديد</p>
           </Link>

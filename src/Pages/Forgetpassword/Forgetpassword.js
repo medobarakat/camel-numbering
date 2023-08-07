@@ -21,9 +21,8 @@ const Forgetpassword = () => {
           }}
         >
           <ForgetpasswordComponent />
-          <Link className='IconWithLink'>
-            <Man />
-            <p>انشاء حساب جديد</p>
+          <Link to={"/login"} className='IconWithLink'>
+            <p>لدي حساب بالفعل</p>
           </Link>
         </Box>
     </div>

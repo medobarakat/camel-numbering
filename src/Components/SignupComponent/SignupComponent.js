@@ -50,7 +50,7 @@ const SignupComponent = () => {
                             variant="outlined"
                             fullWidth
                         />
-                        <ErrorMessage name="password" component="div" />
+                        <ErrorMessage name="email" component="div" />
                     </div>
                     <div className="fieldContainer">
                         <span>رقم الجوال</span>
@@ -62,7 +62,7 @@ const SignupComponent = () => {
                             variant="outlined"
                             fullWidth
                         />
-                        <ErrorMessage name="password" component="div" />
+                        <ErrorMessage name="phone" component="div" />
                     </div>
                     <div className="fieldContainer">
                         <span>كلمه المرور</span>

@@ -20,7 +20,7 @@ const Signup = () => {
           }}
         >
           <SignupComponent />
-          <Link className='IconWithLink'>
+          <Link to={"/login"} className='IconWithLink'>
             <p>لدي حساب بالفعل</p>
           </Link>
         </Box>
