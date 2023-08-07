@@ -1,20 +1,16 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, TextField } from '@mui/material';
-import "./SignupComponent.scss"
+import "./ForgetpasswordComponent.scss"
 import * as Yup from 'yup'; 
 import { Link } from 'react-router-dom';
-const SignupComponent = () => {
+const ForgetpasswordComponent = () => {
     const initialValues = {
         username: '',
-        email:'',
-        phone:'',
         password: '',
     };
     const validationSchema = Yup.object({
         username: Yup.string().required('يرجى إدخال الهوية الوطنية'),
-        email: Yup.string().required('يرجى إدخال البريد الالكتروني'),
-        phone: Yup.string().required('يرجى إدخال رقم الهاتف'),
         password: Yup.string().required('يرجى إدخال كلمة المرور'),
       });
     const handleSubmit = (values) => {
@@ -22,9 +18,9 @@ const SignupComponent = () => {
         console.log(values);
     };
     return (
-        <div className="SignupComponentWrapper">
+        <div className="ForgetpasswordComponentWrapper">
             <h5>
-                تسجيل جديد
+                تسجيل الدخول
             </h5>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 <Form className='formContainer'>
@@ -41,30 +37,6 @@ const SignupComponent = () => {
                         <ErrorMessage name="username" component="div" />
                     </div>
                     <div className="fieldContainer">
-                        <span>البريد الالكتروني</span>
-                        <Field
-                            className={"input"}
-                            as={TextField}
-                            type="email"
-                            name="email"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <ErrorMessage name="password" component="div" />
-                    </div>
-                    <div className="fieldContainer">
-                        <span>رقم الجوال</span>
-                        <Field
-                            className={"input"}
-                            as={TextField}
-                            type="phone"
-                            name="phone"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <ErrorMessage name="password" component="div" />
-                    </div>
-                    <div className="fieldContainer">
                         <span>كلمه المرور</span>
                         <Field
                             className={"input"}
@@ -75,6 +47,11 @@ const SignupComponent = () => {
                             fullWidth
                         />
                         <ErrorMessage name="password" component="div" />
+                    </div>
+                    <div className='passReset'>
+                        <Link>
+                        اعادة تعيين / تغيير كلمة المرور
+                        </Link>
                     </div>
                     <Button variant="contained" sx={{
                         width:"100%",
@@ -90,4 +67,4 @@ const SignupComponent = () => {
     )
 }
 
-export default SignupComponent
+export default ForgetpasswordComponent

@@ -15,6 +15,7 @@ import ContactUs from './Pages/ContactUs/ContactUs';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
+import Forgetpassword from './Pages/Forgetpassword/Forgetpassword';
 
 function App() {
   return (
@@ -33,9 +34,7 @@ function App() {
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
-
-        {/* <Route path="dashboard" element={<Dashboard />} /> */}
-        {/* <Route path="*" element={<NoMatch />} /> */}
+        <Route path="forgetpassword" element={<Forgetpassword />} />
       </Routes>
     </BrowserRouter>
     </>
