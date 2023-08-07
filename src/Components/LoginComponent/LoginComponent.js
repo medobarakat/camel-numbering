@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, TextField } from '@mui/material';
 import "./LoginComponent.scss"
-import * as Yup from 'yup'; 
+import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { LoginUrl, MainUrl } from "../../Constance/ApiConstance"
 const LoginComponent = () => {
+    const [errorText, setErrorText] = useState("")
     const initialValues = {
         username: '',
         password: '',
@@ -12,10 +15,25 @@ const LoginComponent = () => {
     const validationSchema = Yup.object({
         username: Yup.string().required('يرجى إدخال الهوية الوطنية'),
         password: Yup.string().required('يرجى إدخال كلمة المرور'),
-      });
+    });
     const handleSubmit = (values) => {
         // Handle form submission logic here
         console.log(values);
+        HandleLogIn(values.username , values.password)
+    };
+
+
+    const HandleLogIn = async (username, password) => {
+        const url = MainUrl+LoginUrl;
+        setErrorText("")
+        axios
+            .post(url)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                setErrorText(err.response.data.error);
+            });
     };
     return (
         <div className="LoginComponentWrapper">
@@ -50,17 +68,23 @@ const LoginComponent = () => {
                     </div>
                     <div className='passReset'>
                         <Link to={"/forgetpassword"}>
-                        اعادة تعيين / تغيير كلمة المرور
+                            اعادة تعيين / تغيير كلمة المرور
                         </Link>
                     </div>
                     <Button variant="contained" sx={{
-                        width:"100%",
-                        background:"#5DBB67",
-                        borderRadius:3,
-                        fontFamily:"inherit",
-                        marginTop:"20px",
+                        width: "100%",
+                        background: "#5DBB67",
+                        borderRadius: 3,
+                        fontFamily: "inherit",
+                        marginTop: "20px",
                     }} type="submit">دخول</Button>
-                    {/* <button type="submit">Login</button> */}
+                    {
+                        errorText && (
+                            <p>
+                                {errorText}
+                            </p>
+                        )
+                    }
                 </Form>
             </Formik>
         </div>
