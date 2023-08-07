@@ -1,4 +1,4 @@
-//! old code
+// //! old code
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -144,3 +144,43 @@ root.render(
 // );
 
 
+// //? with react auth hook
+
+// import React, { useState } from 'react';
+// import { Issuer, Client } from 'openid-client';
+
+// const App = () => {
+//   const [loggedIn, setLoggedIn] = useState(false);
+
+//   const login = async () => {
+//     const issuer = await Issuer.discover('https://naama.sa');
+//     const client = new Client({
+//       client_id: 'your-client-id',
+//       client_secret: 'your-client-secret',
+//       redirect_uris: ['your-redirect-uri'],
+//       response_types: ['code'],
+//     });
+
+//     const authorizationUrl = client.authorizationUrl({
+//       redirect_uri: 'your-redirect-uri',
+//       scope: 'openid profile', // Define your desired scopes
+//     });
+
+//     window.location.href = authorizationUrl;
+//   };
+
+//   // In your callback route/component, handle the code exchange and token retrieval
+
+//   return (
+//     <div>
+//       <h1>React SSO Example</h1>
+//       {loggedIn ? (
+//         <p>You are logged in!</p>
+//       ) : (
+//         <button onClick={login}>Log in with SSO</button>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default App;

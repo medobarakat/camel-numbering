@@ -13,6 +13,7 @@ import Service from './Pages/Services/Service';
 import SingleServices from './Pages/SingleServices/SingleServices';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import AboutUs from './Pages/AboutUs/AboutUs';
+import Login from './Pages/Login/Login';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route path="services/:id" element={<SingleServices />} />
         <Route path="contactus" element={<ContactUs />} />
         <Route path="aboutus" element={<AboutUs />} />
+        <Route path="login" element={<Login />} />
+
         {/* <Route path="dashboard" element={<Dashboard />} /> */}
         {/* <Route path="*" element={<NoMatch />} /> */}
       </Routes>
