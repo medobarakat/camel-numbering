@@ -6,15 +6,20 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { OAuth2CodePKCEProvider } from 'react-oauth2-code-pkce';
 import { store } from './Features/store';
+import Paths from './Pages/Paths';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <OAuth2CodePKCEProvider clientId="YOUR_CLIENT_ID" redirectUri="YOUR_REDIRECT_URI">
- <Provider store={store}>
- <React.StrictMode>
-      <App />
-  </React.StrictMode>
- </Provider>
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+      <App />   
+      </BrowserRouter>
+      {/* <App /> */}
+    </React.StrictMode>
+  </Provider>
   // </OAuth2CodePKCEProvider>
 );
 
