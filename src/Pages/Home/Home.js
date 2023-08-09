@@ -21,12 +21,12 @@ import { useState } from 'react'
 import axios from 'axios'
 const Home = () => {
     const Savedtoken = useSelector(state => state.auth.token);
+    const [loading, setLoading] = useState(false)
+    const wallet_id = 2469117966;
     const [errorText, setErrorText] = useState("")
     const [tokenCount, setTokenCount] = useState(0)
     const [salesCount, setSalesCount] = useState(0)
     const [purchaseCount, setPurchaseCount] = useState(0)
-    const [loading, setLoading] = useState(false)
-    const wallet_id = 2469117966;
 
     useEffect(() => {
         getInitalData();
