@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
     AppBar,
     Toolbar,
@@ -18,10 +18,17 @@ import Img from "../../Assets/Images/imgLogo.png"
 // styles
 import "./index.scss"
 import { Link, useLocation } from 'react-router-dom';
+import { MainUrl, WalletData } from '../../Constance/ApiConstance';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { setUser } from '../../Features/user/authSlice';
 
 const Navbar = () => {
+    const dispatch = useDispatch()
     const location = useLocation();
-    const pathsWithoutNavbar = ["/login","/signup","/forgetpassword"];
+    const pathsWithoutNavbar = ["/login", "/signup", "/forgetpassword"];
     const showNavbar = !pathsWithoutNavbar.includes(location.pathname);
     const routes = [
         { id: 6, title: "من نحن", path: "/aboutus" },
@@ -31,6 +38,67 @@ const Navbar = () => {
         { id: 2, title: "الاملاك", path: "/prop" },
         { id: 1, title: "الرئيسيه", path: "/" },
     ]
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+    const wallet_id = 2469117966;
+    const Savedtoken = useSelector(state => state.auth.token);
+
+    // useEffect(()=>{
+    //     getInitalData()
+    // },[])
+
+    // const getInitalData = async () => {
+    //     setLoading(true)
+    //      const url = MainUrl + WalletData + wallet_id;
+    //      console.log(url)
+    //     const config = {
+    //         headers: {
+    //           Accept: "application/json",
+    //           Authorization : `bearer ${Savedtoken}`
+    //         },
+    //       };
+    //     axios
+    //         .get(url , config)
+    //         .then((res) => {
+    //             setLoading(false)
+    //             console.log(res.data.data.Wallet)
+    //             setData(res.data.data.Wallet)
+    //             dispatch(setUser(res.data.data.Wallet))
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //             setLoading(false)
+    //         });
+    // };
+
+
+    const getInitalData = useCallback(async () => {
+        setLoading(true);
+        const url = MainUrl + WalletData + wallet_id;
+        console.log(url);
+        const config = {
+            headers: {
+                Accept: 'application/json',
+                Authorization: `bearer ${Savedtoken}`
+            },
+        };
+
+        try {
+            const res = await axios.get(url, config);
+            setLoading(false);
+            console.log(res.data.data.Wallet);
+            setData(res.data.data.Wallet);
+            dispatch(setUser(res.data.data.Wallet));
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
+    }, [wallet_id, Savedtoken]);
+
+    useEffect(() => {
+        getInitalData();
+    }, [getInitalData]);
+
     return (
         <>
             {showNavbar && (
@@ -53,15 +121,20 @@ const Navbar = () => {
                                     ))}
                                 </ul>
                                 <div className='last-sec'>
-                                    <Link to={"/profile"} className='user-container'>
-                                        <div className='link'>
-                                            <KeyboardArrowDownIcon />
-                                        </div>
-                                        <p>
-                                            اسامه عسكر
-                                        </p>
-                                        <img src={Img} alt="user" />
-                                    </Link>
+                                    {
+                                        !loading && (
+                                            <Link to={"/profile"} className='user-container'>
+                                                <div className='link'>
+                                                    <KeyboardArrowDownIcon />
+                                                </div>
+                                                <p>
+                                                    {data.FIRSTNAME}{" "}{data.SECONDNAME}
+                                                </p>
+                                                <img src={Img} alt="user" />
+                                            </Link>
+                                        )
+                                    }
+
                                     <SearchIcon />
                                 </div>
                             </nav>
