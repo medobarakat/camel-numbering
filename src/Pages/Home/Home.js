@@ -16,19 +16,23 @@ import StoreIcon from '@mui/icons-material/Store';
 import "./Home.scss"
 import { Container } from '@mui/material'
 import { useSelector } from 'react-redux'
-import { MainUrl, getWalletCount } from '../../Constance/ApiConstance'
+import { GetPurchaseTransferCount, GetSalesTransferCount, MainUrl, getWalletCount } from '../../Constance/ApiConstance'
 import { useState } from 'react'
 import axios from 'axios'
 const Home = () => {
     const Savedtoken = useSelector(state => state.auth.token);
     const [errorText, setErrorText] = useState("")
     const [tokenCount, setTokenCount] = useState(0)
+    const [salesCount, setSalesCount] = useState(0)
+    const [purchaseCount, setPurchaseCount] = useState(0)
     const [loading, setLoading] = useState(false)
     const wallet_id = 2469117966;
 
-    useEffect(()=>{
-        getInitalData()
-    },[])
+    useEffect(() => {
+        getInitalData();
+        getSalesData();
+        getPurchaseData();
+    }, [wallet_id]); 
 
     const getInitalData = async () => {
         setLoading(true)
@@ -49,6 +53,52 @@ const Home = () => {
                 setLoading(false)
                  setTokenCount(res.data.data.token_count)
                 // dispatch(setToken(res.data.token))
+            })
+            .catch((err) => {
+                setErrorText(err.response.data.error);
+                setLoading(false)
+            });
+    };
+    const getSalesData = async () => {
+        setLoading(true)
+        //  const url = MainUrl + "/token";
+         const url = MainUrl + GetSalesTransferCount + wallet_id;
+        setErrorText("")
+
+        const config = {
+            headers: {
+              Accept: "application/json",
+              Authorization : `bearer ${Savedtoken}`
+            },
+          };
+        axios
+            .get(url , config)
+            .then((res) => {
+                setLoading(false)
+                setSalesCount(res.data.data.transfer_count)
+            })
+            .catch((err) => {
+                setErrorText(err.response.data.error);
+                setLoading(false)
+            });
+    };
+    const getPurchaseData = async () => {
+        setLoading(true)
+        //  const url = MainUrl + "/token";
+         const url = MainUrl + GetPurchaseTransferCount + wallet_id;
+        setErrorText("")
+
+        const config = {
+            headers: {
+              Accept: "application/json",
+              Authorization : `bearer ${Savedtoken}`
+            },
+          };
+        axios
+            .get(url , config)
+            .then((res) => {
+                setLoading(false)
+               setPurchaseCount(res.data.data.transfer_count)
             })
             .catch((err) => {
                 setErrorText(err.response.data.error);
@@ -85,7 +135,7 @@ const Home = () => {
                                             المبيعات#
                                         </p>
                                     </div>
-                                    <h4 className='number'>340</h4>
+                                    <h4 className='number'>{salesCount}</h4>
                                 </div>
                                 <div className='card'>
                                     <div className='iconandtxt'>
@@ -94,7 +144,7 @@ const Home = () => {
                                             لمشتريات#
                                         </p>
                                     </div>
-                                    <h4 className='number'>340</h4>
+                                    <h4 className='number'>{purchaseCount}</h4>
                                 </div>
                             </div>
                             <div className='secSec'>

@@ -5,3 +5,9 @@ export const LoginUrl = "/login"
 export const getWalletCount = "/walletTokensCount?wallet_id="
 
 export const WalletData = "/wallet?ID="
+
+export const GetSalesTransferCount = "/walletSaleTransfersCount?wallet_id="
+
+export const GetPurchaseTransferCount = "/walletPurchaseTransfersCount?wallet_id="
+
+

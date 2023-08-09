@@ -74,8 +74,8 @@ const Navbar = () => {
 
     const getInitalData = useCallback(async () => {
         setLoading(true);
-        const url = MainUrl + WalletData + wallet_id;
-        // console.log(url);
+         const url = MainUrl + WalletData + wallet_id;
+
         const config = {
             headers: {
                 Accept: 'application/json',
