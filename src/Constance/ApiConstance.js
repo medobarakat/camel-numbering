@@ -1,3 +1,7 @@
 export const MainUrl = "http://164.132.190.173:4000"
 
 export const LoginUrl = "/login"
+
+export const getWalletCount = "/walletTokensCount?wallet_id="
+
+export const WalletData = "/wallet?ID="

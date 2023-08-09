@@ -6,7 +6,6 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { OAuth2CodePKCEProvider } from 'react-oauth2-code-pkce';
 import { store } from './Features/store';
-import Paths from './Pages/Paths';
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,7 +16,6 @@ root.render(
       <BrowserRouter>
       <App />   
       </BrowserRouter>
-      {/* <App /> */}
     </React.StrictMode>
   </Provider>
   // </OAuth2CodePKCEProvider>

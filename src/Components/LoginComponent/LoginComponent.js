@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button, TextField } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import "./LoginComponent.scss"
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { LoginUrl, MainUrl } from "../../Constance/ApiConstance"
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../Features/user/authSlice';
 const LoginComponent = () => {
+    const dispatch = useDispatch()
     const [errorText, setErrorText] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [sucess, setSucess] = useState(false)
     const initialValues = {
         username: '',
         password: '',
@@ -17,22 +22,27 @@ const LoginComponent = () => {
         password: Yup.string().required('يرجى إدخال كلمة المرور'),
     });
     const handleSubmit = (values) => {
-        // Handle form submission logic here
-        console.log(values);
-        HandleLogIn(values.username , values.password)
+        HandleLogIn(values.username, values.password)
     };
 
 
     const HandleLogIn = async (username, password) => {
-        const url = MainUrl+LoginUrl;
+        setSucess(false)
+        setLoading(true)
+        const url = MainUrl + LoginUrl;
         setErrorText("")
         axios
-            .post(url)
+            .post(url, { username, password })
             .then((res) => {
-                console.log(res);
+                // console.log(res.data.token);
+                setLoading(false)
+                setSucess(true)
+                dispatch(setToken(res.data.token))
             })
             .catch((err) => {
                 setErrorText(err.response.data.error);
+                setLoading(false)
+                setSucess(false)
             });
     };
     return (
@@ -77,12 +87,25 @@ const LoginComponent = () => {
                         borderRadius: 3,
                         fontFamily: "inherit",
                         marginTop: "20px",
-                    }} type="submit">دخول</Button>
+                    }} type="submit">
+                        {
+                            loading ? " ... جاري التحميل" : "دخول"
+                        }
+                    </Button>
                     {
                         errorText && (
                             <p>
                                 {errorText}
                             </p>
+                        )
+                    }
+                    {
+                        sucess && (
+                            <Box sx={{ textAlign: "center" , color:"white" }}>
+                                <p>
+                                    تم تسجيل الدخول بنجاح
+                                </p>
+                            </Box>
                         )
                     }
                 </Form>

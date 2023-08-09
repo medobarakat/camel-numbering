@@ -75,7 +75,7 @@ const Navbar = () => {
     const getInitalData = useCallback(async () => {
         setLoading(true);
         const url = MainUrl + WalletData + wallet_id;
-        console.log(url);
+        // console.log(url);
         const config = {
             headers: {
                 Accept: 'application/json',
@@ -86,7 +86,7 @@ const Navbar = () => {
         try {
             const res = await axios.get(url, config);
             setLoading(false);
-            console.log(res.data.data.Wallet);
+            // console.log(res.data.data.Wallet);
             setData(res.data.data.Wallet);
             dispatch(setUser(res.data.data.Wallet));
         } catch (err) {

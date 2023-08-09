@@ -12,17 +12,20 @@ import EditCalendarIcon from '@mui/icons-material/EditCalendar';// images
 import Img from "../../Assets/Images/roundImg.png"
 // styles
 import "./Profile.scss"
+import { useSelector } from 'react-redux';
 const Profile = () => {
-    const data = {
-        name: "اسامةعبد الرءوف عسكر",
-        picturl: "anyLink",
-        nationalId: "334343432122121212",
-        healthCard: "334343432122121212",
-        email: "osama.asker@ejadtech.sa",
-        phone: "+101015293997",
-        birthDay: "21 / 3/ 2023",
-        password: "*********"
-    }
+    // const data = {
+    //     name: "اسامةعبد الرءوف عسكر",
+    //     picturl: "anyLink",
+    //     nationalId: "334343432122121212",
+    //     healthCard: "334343432122121212",
+    //     email: "osama.asker@ejadtech.sa",
+    //     phone: "+101015293997",
+    //     birthDay: "21 / 3/ 2023",
+    //     password: "*********"
+    // }
+    const data = useSelector(state => state.auth.userData);
+
     return (
         <div className='profileWrapper'>
             <div className='title'>
@@ -37,17 +40,17 @@ const Profile = () => {
                     <div className='textandImg'>
                         <img src={Img} alt="user" />
                         <h5>
-                            {data.name}
+                            {data?.FIRSTNAME}{" "}{data?.SECONDNAME}{" "}{data?.THIRDNAME}{" "}{data?.FOURTHNAME}{" "}
                         </h5>
                     </div>
                     <div className='secondWrapper'>
                         <div className='txtWrapper'>
                             <p className='firstTxt'>البطاقة الصحية</p>
-                            <p className='fromData'>{data.healthCard}</p>
+                            <p className='fromData'>{data?.HEALTHCARD_NO}</p>
                         </div>
                         <div className='txtWrapper firstCard'>
                             <p className='firstTxt'>رقم الهوية الوطنية</p>
-                            <p className='fromData'>{data.nationalId}</p>
+                            <p className='fromData'>{data?.ID}</p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +61,7 @@ const Profile = () => {
 
                             <TextField
                                 id="outlined-required"
-                                defaultValue={data.email}
+                                placeholder={data?.EMAIL}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -74,7 +77,7 @@ const Profile = () => {
 
                             <TextField
                                 id="outlined-required"
-                                defaultValue={data.birthDay}
+                                placeholder={data?.BIRTHDATE}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -91,7 +94,7 @@ const Profile = () => {
                             <span>رقم الجوال</span>
                             <TextField
                                 id="outlined-required"
-                                defaultValue={data.phone}
+                                 placeholder={data?.PHONE}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -105,7 +108,7 @@ const Profile = () => {
                             <span>كلمه المرور</span>
                             <TextField
                                 id="outlined-required"
-                                defaultValue={data.password}
+                                placeholder='******'
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
