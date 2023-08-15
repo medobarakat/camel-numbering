@@ -8,6 +8,7 @@ import TransactionsCard from '../../Components/TransactionsCard/TransactionsCard
 import { useSelector } from 'react-redux';
 import { GetAllTransfers, MainUrl } from '../../Constance/ApiConstance';
 import axios from 'axios';
+import Loader from '../../Components/Loader/Loader';
 const Transactions = () => {
     const data =
         [
@@ -91,11 +92,7 @@ const Transactions = () => {
         <>
             {
                 loading ? (
-                    <div style={{ marginTop: "9rem" }}>
-                        <p>
-                            loading ...
-                        </p>
-                    </div>
+                    <Loader />
                 ) : (
                     <div className='transationsWrapper'>
                         <div className='title'>

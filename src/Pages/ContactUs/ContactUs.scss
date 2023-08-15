@@ -3,6 +3,7 @@
 
     .title {
         background: #5dbb6747;
+        user-select: none;
 
         h5 {
             color: #5DBB67;
@@ -20,6 +21,7 @@
         margin-bottom: 3rem;
 
         .LeftContent {
+            user-select: none;
             border-radius: 16px;
             display: flex;
             background: #003462;

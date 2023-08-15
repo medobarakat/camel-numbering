@@ -3,6 +3,7 @@
 
     .title {
         background: #5dbb6747;
+        user-select: none;
 
         h5 {
             color: #5DBB67;
@@ -24,6 +25,7 @@
         justify-content: space-around;
 
         .LeftContent {
+            user-select: none;
             img {
                 width: 395px;
                 height: 338px;

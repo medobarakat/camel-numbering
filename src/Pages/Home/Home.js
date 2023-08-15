@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux'
 import { GetPurchaseTransferCount, GetSalesTransferCount, MainUrl, getWalletCount } from '../../Constance/ApiConstance'
 import { useState } from 'react'
 import axios from 'axios'
+import Loader from '../../Components/Loader/Loader'
 const Home = () => {
     const Savedtoken = useSelector(state => state.auth.token);
     const [loading, setLoading] = useState(false)
@@ -109,11 +110,7 @@ const Home = () => {
         <>
             {
                 loading ? (
-                    <div style={{marginTop:"9rem"}}>
-                        <p>
-                            loading ...
-                        </p>
-                    </div>
+                    <Loader />
                 ) : (
                     <div className='HomeWarpper'>
                         <Container>
