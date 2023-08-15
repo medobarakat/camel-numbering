@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom';
-import DummyImg from "../../Assets/Images/Femal.png"
-import DummyImg2 from "../../Assets/Images/camel2.png"
+// images
+import Grandfemale from "../../Assets/Images/Grandfemale.png"
+import Grandmale from "../../Assets/Images/Grandmale.png"
+import Youngfemale from "../../Assets/Images/Youngfemale.png"
+import Youngmale from "../../Assets/Images/Youngmale.png"
 // styles
 import "./SingleProp.scss"
 import { Container } from '@mui/material';
 const SingleProp = () => {
     const location = useLocation();
-    const data = location.state;
+    const item = location.state;
     const { id } = useParams();
+    useEffect(()=>{
+        console.log(item)
+    },[])
     const MyData = {
         id: 1,
         name: "اللؤلوة",
@@ -93,7 +99,7 @@ const SingleProp = () => {
                         </div>
                     </div>
                     <div className='LeftContent'>
-                        <img src={DummyImg} alt={MyData.name} />
+                        <img src={Grandfemale} alt={MyData.name} />
                     </div>
                 </div>
             </Container>
