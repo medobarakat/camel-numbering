@@ -77,6 +77,11 @@ const CardsWithImg = ({ item }) => {
                                 "حيوان مخصي"
                             )
                         }
+                        {
+                            item.SEX === 0 && (
+                                "حيوان مخصي"
+                            )
+                        }
                     </p>
                     <CamleIcon />
                 </div>

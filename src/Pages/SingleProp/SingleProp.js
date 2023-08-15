@@ -10,29 +10,17 @@ import "./SingleProp.scss"
 import { Container } from '@mui/material';
 const SingleProp = () => {
     const location = useLocation();
-    const item = location.state;
+    const item = location.state.item;
     const { id } = useParams();
-    useEffect(()=>{
+    useEffect(() => {
         console.log(item)
-    },[])
-    const MyData = {
-        id: 1,
-        name: "اللؤلوة",
-        age: 33,
-        type: "جمل",
-        type2: "انثي",
-        barcode: "hqi2quik9u9w2awe",
-        color: "الحمر",
-        status: "موجود",
-        strain: "هجن",
-        edu: "رعوي",
-    }
+    }, [])
     return (
         <div className='singlePropWrapper'>
             <div className='title'>
                 <Container>
                     <h5>
-                    <Link to="/prop">الاملاك</Link>  {" > "}  {MyData.name} 
+                        <Link to="/prop">الاملاك</Link>  {" > "}  {item.NAME}
                     </h5>
                 </Container>
             </div>
@@ -57,16 +45,72 @@ const SingleProp = () => {
                         </div>
                         <div className='col'>
                             <div className='singleItem'>
-                                <p className='fromData'>{MyData.age}</p>
+                                <p className='fromData'>{item.AGE_YEARS}</p>
                             </div>
                             <div className='singleItem-single'>
-                                <p className='fromData'>{MyData.type}</p>
+                                <p className='fromData'>
+                                    {
+                                        item.TYPE === 0 && ("حيوان مخصي")
+                                    }
+                                    {
+                                        item.TYPE === 1 && ("جمل")
+                                    }
+                                    {
+                                        item.TYPE === 2 && ("خيليّ ، فرسيّ")
+                                    }
+                                    {
+                                        item.TYPE === 3 && ("بقريّ")
+                                    }
+                                    {
+                                        item.TYPE === 4 && ("ضأنيّ ، غنميّ")
+                                    }
+                                    {
+                                        item.TYPE === 5 && ("عنزيّ")
+                                    }
+                                </p>
                             </div>
                             <div className='singleItem'>
-                                <p className='fromData'>{MyData.type2}</p>
+                                <p className='fromData'>
+                                    {
+                                        item.SEX === 1 && (
+                                            "ذكر"
+                                        )
+                                    }
+                                    {
+                                        item.SEX === 2 && (
+                                            "أنثى"
+                                        )
+                                    }
+                                    {
+                                        item.SEX === 3 && (
+                                            "حيوان مخصي"
+                                        )
+                                    }
+                                    {
+                                        item.SEX === 0 && (
+                                            "حيوان مخصي"
+                                        )
+                                    }
+                                </p>
                             </div>
                             <div className='singleItem'>
-                                <p className='fromData'>{MyData.barcode}</p>
+                                <p className='fromData'>
+                                    {
+                                        item.BARCODE_2 && (
+                                            <>{item.BARCODE_2}</>
+                                        )
+                                    }
+                                    {
+                                        item.BARCODE_3 && (
+                                            <>{item.BARCODE_3}</>
+                                        )
+                                    }
+                                    {
+                                        item.BARCODE_4 && (
+                                            <>{item.BARCODE_4}</>
+                                        )
+                                    }
+                                </p>
                             </div>
                         </div>
                         <div className='col2'>
@@ -85,21 +129,165 @@ const SingleProp = () => {
                         </div>
                         <div className='col2'>
                             <div className='singleItem'>
-                                <p className='fromData'>{MyData.color}</p>
+                                <p className='fromData'>
+                                    {
+                                        item.COLOR === 16 && (
+                                            "المجاهيم"
+                                        )
+                                    }
+                                    {
+                                        item.COLOR === 17 && (
+                                            "الوضح"
+                                        )
+                                    }
+                                    {
+                                        item.COLOR === 18 && (
+                                            "الشعل"
+                                        )
+                                    }
+                                    {
+                                        item.COLOR === 19 && (
+                                            "الصفر"
+                                        )
+                                    }
+                                    {
+                                        item.COLOR === 20 && (
+                                            "الشقح"
+                                        )
+                                    }
+                                    {
+                                        item.COLOR === 21 && (
+                                            "الحمر"
+                                        )
+                                    }
+                                    {
+                                        item.COLOR !== 16 && item.COLOR !== 17 && item.COLOR !== 18 && item.COLOR !== 19 && item.COLOR !== 20 && item.COLOR !== 21 && (
+                                            "غير معرف"
+                                        )
+                                    }
+                                </p>
                             </div>
                             <div className='singleItem'>
-                                <p className='fromDataStatusSucess'>{MyData.status}</p>
+                                <p className='fromDataStatusSucess'>
+                                    {
+                                        item.STATUS === 3 && (
+                                            "موجود"
+                                        )
+                                    }
+                                    {
+                                        item.STATUS === 6 && (
+                                            "مباع"
+                                        )
+                                    }
+                                    {
+                                        item.STATUS === 7 && (
+                                            "نافق"
+                                        )
+                                    }
+                                    {
+                                        item.STATUS === 12 && (
+                                            "مذبوح"
+                                        )
+                                    }
+                                    {
+                                        item.STATUS !== 3 && item.STATUS !== 6 && item.STATUS !== 7 && item.STATUS !== 12 && (
+                                            "غيرمعرف"
+                                        )
+                                    }
+                                </p>
                             </div>
                             <div className='singleItem'>
-                                <p className='fromData'>{MyData.strain}</p>
+                                <p className='fromData'>
+                                    {
+                                        item.BREED === 1 && (
+                                            "محلى"
+                                        )
+                                    }
+                                    {
+                                        item.BREED === 2 && (
+                                            "هجن"
+                                        )
+                                    }
+                                    {
+                                        item.BREED === 3 && (
+                                            "مستورد"
+                                        )
+                                    }
+                                    {
+                                        item.BREED !== 1 && item.BREED !== 2 && item.BREED !== 3 && (
+                                            "غير معرف"
+                                        )
+                                    }
+                                </p>
                             </div>
                             <div className='singleItem'>
-                                <p className='fromData'>{MyData.edu}</p>
+                                <p className='fromData'>
+                                    {
+                                        item.FARMING_TYPE === 1 && (
+                                            "رعوي"
+                                        )
+                                    }
+                                    {
+                                        item.FARMING_TYPE === 2 && (
+                                            "مزرعة"
+                                        )
+                                    }
+                                    {
+                                        item.FARMING_TYPE === 3 && (
+                                            "أسواق"
+                                        )
+                                    }
+                                    {
+                                        item.FARMING_TYPE === 4 && (
+                                            "أحواش"
+                                        )
+                                    }
+                                    {
+                                        item.FARMING_TYPE !== 1 && item.FARMING_TYPE !== 2 && item.FARMING_TYPE !== 3 && item.FARMING_TYPE !== 4 && (
+                                            "غير معرف"
+                                        )
+                                    }
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div className='LeftContent'>
-                        <img src={Grandfemale} alt={MyData.name} />
+
+                        {
+                            item.AGE_YEARS >= 2 ? (
+                                <>
+                                    {
+                                        item.SEX === 2 ? (
+                                            <>
+                                                <img src={Grandfemale} alt={item.NAME} />
+
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img src={Grandmale} alt={item.NAME} />
+
+                                            </>
+                                        )
+                                    }
+                                </>
+                            ) : (
+                                <>
+                                    {
+                                        item.SEX === 2 ? (
+                                            <>
+                                                <img src={Youngfemale} alt={item.NAME} />
+
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img src={Youngmale} alt={item.NAME} />
+
+                                            </>
+                                        )
+                                    }
+                                </>
+                            )
+                        }
                     </div>
                 </div>
             </Container>
