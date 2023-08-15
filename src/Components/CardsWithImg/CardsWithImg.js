@@ -16,10 +16,46 @@ const CardsWithImg = ({ item }) => {
             to={{
                 pathname: `/prop/${item.WALLET_ID}`,
             }}
-            state={{item:item}}
+            state={{ item: item }}
             className='card'
             id={item.WALLET_ID}
-        >            <img src={Grandfemale} alt={item.title} />
+
+        >
+            {
+                item.AGE_YEARS >= 2 ? (
+                    <>
+                        {
+                            item.SEX === 2 ? (
+                                <>
+                                    <img src={Grandfemale} alt={item.NAME} />
+
+                                </>
+                            ) : (
+                                <>
+                                    <img src={Grandmale} alt={item.NAME} />
+
+                                </>
+                            )
+                        }
+                    </>
+                ) : (
+                    <>
+                        {
+                            item.SEX === 2 ? (
+                                <>
+                                    <img src={Youngfemale} alt={item.NAME} />
+
+                                </>
+                            ) : (
+                                <>
+                                    <img src={Youngmale} alt={item.NAME} />
+
+                                </>
+                            )
+                        }
+                    </>
+                )
+            }
             <div className='textWrapper'>
                 <h5>
                     {item.NAME}

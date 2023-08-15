@@ -49,57 +49,7 @@ const Properity = () => {
 
 
 
-  const cardData = [
-    {
-      id: 1,
-      img: "anylink",
-      title: "الدانه",
-      type: "انثي كبيره"
-    },
-    {
-      id: 2,
-      img: "anylink",
-      title: "ضاحي",
-      type: "ذكر كبير"
-    },
-    {
-      id: 3,
-      img: "anylink",
-      title: "الروميساء",
-      type: "انثي صغيره"
-    },
-    {
-      id: 4,
-      img: "anylink",
-      title: "الدانه",
-      type: "ذكر كبير"
-    },
-    {
-      id: 5,
-      img: "anylink",
-      title: "ضاحي",
-      type: "ذكر كبير"
-    },
-    {
-      id: 6,
-      img: "anylink",
-      title: "الروميساء",
-      type: "انثي كبيره"
-    },
-    {
-      id: 7,
-      img: "anylink",
-      title: "الدانه",
-      type: "انثي كبيره"
-    },
-    {
-      id: 8,
-      img: "anylink",
-      title: "الدانه",
-      type: "ذكر كبير"
-    },
-  ]
-
+ 
 
 
   return (
