@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom';
-import DummyImg from "../../Assets/Images/Femal.png"
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -9,6 +8,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { Box, Button, Container, Toolbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+// images
+import Grandfemale from "../../Assets/Images/Grandfemale.png"
+import Grandmale from "../../Assets/Images/Grandmale.png"
+import Youngfemale from "../../Assets/Images/Youngfemale.png"
+import Youngmale from "../../Assets/Images/Youngmale.png"
 import Anaam from "../../Assets/Images/Anaam.png"
 // styles
 import "./SingleServices.scss"
@@ -144,7 +148,7 @@ const SingleServices = () => {
                         </div>
                     </div>
                     <div className='LeftContent'>
-                        <img src={DummyImg} alt={MyData.name} />
+                        <img src={Grandfemale} alt={MyData.name} />
                     </div>
                 </div>
                 <div className='buttonContainer'>
