@@ -12,9 +12,9 @@ const SingleProp = () => {
     const location = useLocation();
     const item = location.state.item;
     const { id } = useParams();
-    useEffect(() => {
-        console.log(item)
-    }, [])
+    // useEffect(() => {
+    //     console.log(item)
+    // }, [])
     return (
         <div className='singlePropWrapper'>
             <div className='title'>
@@ -66,6 +66,11 @@ const SingleProp = () => {
                                     }
                                     {
                                         item.TYPE === 5 && ("عنزيّ")
+                                    }
+                                    {
+                                        item.TYPE !== 0 && item.TYPE !== 1 && item.TYPE !== 2 && item.TYPE !== 3 && item.TYPE !== 4 && item.TYPE !== 5 && (
+                                            "غير معروف"
+                                        )
                                     }
                                 </p>
                             </div>
