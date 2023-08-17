@@ -15,3 +15,7 @@ export const GetAllTransfers = "/walletTransfers?wallet_id="
 export const getpropData = "/walletTokens?wallet_id="
 
 export const getTokenData = "/token?token_id="
+
+export const ApproveTransfer = "/approveTransfer"
+
+export const DeclineTransfer = "/declineTransfer"
