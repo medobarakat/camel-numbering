@@ -27,7 +27,6 @@ const SingleProp = () => {
             <Container>
 
                 <div className='lowerContent'>
-
                     <div className='rightContent'>
                         <div className='col'>
                             <div className='singleItem'>
