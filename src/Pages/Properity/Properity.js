@@ -21,7 +21,6 @@ const Properity = () => {
 
   const getData = async () => {
     setLoading(true)
-    //  const url = MainUrl + "/token";
     const url = MainUrl + getpropData + wallet_id;
 
     const config = {
@@ -49,7 +48,7 @@ const Properity = () => {
 
 
 
- 
+
 
 
   return (
