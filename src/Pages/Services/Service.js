@@ -21,26 +21,37 @@ import { Badge, Box, Button, Container, MenuItem, Select, TextField, Toolbar } f
 // styles
 import "./Services.scss"
 import { Link } from 'react-router-dom';
-import { GetAllTransfers, MainUrl, WalletData, getpropData } from '../../Constance/ApiConstance';
+import { GetAllTransfers, MainUrl, TransferApi, WalletData, getpropData } from '../../Constance/ApiConstance';
 import { useSelector } from 'react-redux';
 import Loader from '../../Components/Loader/Loader';
 import axios from 'axios';
 const Service = () => {
   const Savedtoken = useSelector(state => state.auth.token);
   const [open, setOpen] = useState(false);
+  const [acceptOpen, setAcceptOpen] = useState(false);
+  const [failureOpen, setFailureOpen] = useState(false);
   const [activeCard, setActiveCard] = useState(1)
   const [animalsData, setAnimalsData] = useState([])
-  const [selectedAnimal, setSelectedAnimal] = useState()
+  const [selectedAnimal, setSelectedAnimal] = useState('')
+  const [recieverId, setRecieverId] = useState('')
   const [data, setData] = useState([])
   const [buyerId, setBuyerId] = useState([]);
   const [buyerData, setBuyerData] = useState([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
   const wallet_id = 2469117966;
   const handleClickOpen = () => {
-    setOpen(true);
+    if (recieverId && animalsData) {
+      setOpen(true);
+      setError(false)
+    } else {
+      setError(true)
+    }
   };
   const handleClose = () => {
     setOpen(false);
+    setAcceptOpen(false)
+    setFailureOpen(false)
   }
 
 
@@ -130,7 +141,7 @@ const Service = () => {
       .then((res) => {
         setLoading(false)
         setAnimalsData(res.data.data.Tokens)
-        console.log(res.data.data.Tokens)
+        console.log(JSON.stringify(res.data.data.Tokens))
       })
       .catch((err) => {
         console.log(err)
@@ -139,8 +150,40 @@ const Service = () => {
   };
 
   const handleChangeAnimal = (e) => {
-    console.log(e)
+    console.log(e.target.value)
+    setSelectedAnimal(e.target.value)
   }
+
+
+  const transferAnimal = () => {
+    setLoading(true)
+    const url = MainUrl + TransferApi;
+
+    const config = {
+      headers: {
+        Accept: "application/json",
+        Authorization: `bearer ${Savedtoken}`
+      },
+    };
+    const body ={
+      "ANIMAL_ID": "string",
+      "OLD_WALLET_ID": "string",
+      "NEW_WALLET_ID": "string",
+      "STATE": 0
+    }
+    axios
+      .post(url, body,config)
+      .then((res) => {
+        setLoading(false)
+        setAnimalsData(res.data.data.Tokens)
+        console.log(res.data.data.Tokens)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+      });
+  }
+
 
   return (
     <>
@@ -149,6 +192,70 @@ const Service = () => {
           <Loader />
         ) : (
           <div className='servicesWrapper'>
+            {/* accept modal */}
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={acceptOpen}>
+              <DialogTitle sx={{ padding: 0 }} disableTypography>
+                <Toolbar>
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    {/* Empty string to hide the title */}
+                  </Typography>
+                  <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close">
+                    <CloseIcon />
+                  </IconButton>
+                </Toolbar>
+              </DialogTitle>
+              <DialogContent sx={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
+                <img width={128} height={88} src={Anaam} alt="user" />
+                <Typography gutterBottom sx={{ marginTop: 4, marginBottom: 4, fontFamily: "inherit" }}>
+                  تم نقل الملكيه بنجاح
+                </Typography>
+                <Box sx={{
+                  width: "20%",
+                  margin: "auto"
+                }}>
+                  <Button autoFocus sx={{
+                    borderRadius: 3,
+                    background: "#5DBB67",
+                    fontSize: 16, fontFamily: "inherit"
+                  }} variant="contained" onClick={handleClose}>
+                    تأكيد
+                  </Button>
+                </Box>
+              </DialogContent>
+            </Dialog>
+            {/* failure modal */}
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={failureOpen}>
+              <DialogTitle sx={{ padding: 0 }} disableTypography>
+                <Toolbar>
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    {/* Empty string to hide the title */}
+                  </Typography>
+                  <IconButton edge="end" color="inherit" onClick={handleClose} aria-label="close">
+                    <CloseIcon />
+                  </IconButton>
+                </Toolbar>
+              </DialogTitle>
+              <DialogContent sx={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
+                <img width={128} height={88} src={Anaam} alt="user" />
+                <Typography gutterBottom sx={{ color:"red",marginTop: 4, marginBottom: 4, fontFamily: "inherit" }}>
+                  حدثت مشكله في نقل الملكيه
+                </Typography>
+                <Box sx={{
+                  width: "20%",
+                  margin: "auto"
+                }}>
+                  <Button autoFocus sx={{
+                    borderRadius: 3,
+                    background: "#5DBB67",
+                    fontSize: 16, fontFamily: "inherit"
+                  }} variant="contained" onClick={handleClose}>
+                    تأكيد
+                  </Button>
+                </Box>
+              </DialogContent>
+            </Dialog>
+
+            {/* question modal */}
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
               <DialogTitle sx={{ padding: 0 }} disableTypography>
                 <Toolbar>
@@ -163,7 +270,8 @@ const Service = () => {
               <DialogContent sx={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
                 <img width={128} height={88} src={Anaam} alt="user" />
                 <Typography gutterBottom sx={{ marginTop: 4, marginBottom: 4, fontFamily: "inherit" }}>
-                  بالضغط على تأكيد فانت توافق على نقل الملكية الخاصة بك
+                  {/* بالضغط على تأكيد فانت توافق على نقل الملكية الخاصة بك */}
+                  {recieverId} سيتم نقل الملكيه {selectedAnimal?.NAME} إلي صاحب الهويه رقم
                 </Typography>
                 <Box sx={{
                   width: "20%",
@@ -306,13 +414,19 @@ const Service = () => {
                                 textAlign: 'end'
                               },
                             }}
+                            value={recieverId}
+                            onChange={(e) => setRecieverId(e.target.value)}
                           />
                           <Button onClick={handleClickOpen} sx={{
                             borderRadius: 3,
                             background: "#5DBB67",
                             fontSize: 16, fontFamily: "inherit"
                           }} variant="contained" color="success">ارسال</Button>
-
+                          <div>
+                            {error && (
+                              <p style={{ color: "red" }}>برجاء ملئ جميع الحقول</p>
+                            )}
+                          </div>
                         </div>
                         <div className='signleBuy'>
                           <p>
@@ -320,25 +434,17 @@ const Service = () => {
                           </p>
                           <Select
                             value={selectedAnimal}
-                            onChange={handleChangeAnimal}
+                            onChange={(e) => handleChangeAnimal(e)}
                           >
                             {
                               animalsData?.map((item) => (
-                                <MenuItem key={item.WALLET_ID} value={item.NAME}>{item.NAME}</MenuItem>
+                                <MenuItem key={item.NAME} value={item}>{item.NAME}</MenuItem>
                               ))
                             }
                           </Select>
-                          {/* <TextField
-                            id="outlined-required"
-                            placeholder='اسم الحيوان'
-                            inputProps={{
-                              sx: {
-                                textAlign: 'end'
-                              },
-                            }}
-                          /> */}
                         </div>
                       </div>
+
                     </>
                   )}
               </div>

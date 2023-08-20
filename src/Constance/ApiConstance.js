@@ -19,3 +19,5 @@ export const getTokenData = "/token?token_id="
 export const ApproveTransfer = "/approveTransfer"
 
 export const DeclineTransfer = "/declineTransfer"
+
+export const TransferApi = "/transfer"
