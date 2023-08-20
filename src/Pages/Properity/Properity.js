@@ -47,7 +47,9 @@ const Properity = () => {
   }, [wallet_id]);
 
 
-
+  const handleTransfer = async()=>{
+    
+  }
 
 
 
