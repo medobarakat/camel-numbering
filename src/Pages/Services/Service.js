@@ -39,6 +39,7 @@ const Service = () => {
   const [buyerData, setBuyerData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [Modalerror, setModalError] = useState('')
   const wallet_id = 2469117966;
   const handleClickOpen = () => {
     if (recieverId && animalsData) {
@@ -141,7 +142,7 @@ const Service = () => {
       .then((res) => {
         setLoading(false)
         setAnimalsData(res.data.data.Tokens)
-        console.log(JSON.stringify(res.data.data.Tokens))
+        console.log(res.data.data.Tokens)
       })
       .catch((err) => {
         console.log(err)
@@ -156,9 +157,8 @@ const Service = () => {
 
 
   const transferAnimal = () => {
-    setLoading(true)
+    setOpen(false)
     const url = MainUrl + TransferApi;
-
     const config = {
       headers: {
         Accept: "application/json",
@@ -166,21 +166,26 @@ const Service = () => {
       },
     };
     const body ={
-      "ANIMAL_ID": "string",
-      "OLD_WALLET_ID": "string",
-      "NEW_WALLET_ID": "string",
-      "STATE": 0
+      "ANIMAL_ID": selectedAnimal.NAME,
+      "OLD_WALLET_ID": selectedAnimal.WALLET_ID,
+      "NEW_WALLET_ID": recieverId,
+      // "STATE": 0
     }
     axios
       .post(url, body,config)
       .then((res) => {
-        setLoading(false)
-        setAnimalsData(res.data.data.Tokens)
-        console.log(res.data.data.Tokens)
+        // console.log(res.data.result)
+      if (res.status === 400) {
+        setFailureOpen(true)
+        // console.log(res.message)
+      } else {
+        setAcceptOpen(true)
+      }
       })
       .catch((err) => {
-        console.log(err)
+        setModalError(err.response.data.message)
         setLoading(false)
+        setFailureOpen(true)
       });
   }
 
@@ -218,7 +223,7 @@ const Service = () => {
                     background: "#5DBB67",
                     fontSize: 16, fontFamily: "inherit"
                   }} variant="contained" onClick={handleClose}>
-                    تأكيد
+                    اغلاق
                   </Button>
                 </Box>
               </DialogContent>
@@ -238,7 +243,8 @@ const Service = () => {
               <DialogContent sx={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
                 <img width={128} height={88} src={Anaam} alt="user" />
                 <Typography gutterBottom sx={{ color:"red",marginTop: 4, marginBottom: 4, fontFamily: "inherit" }}>
-                  حدثت مشكله في نقل الملكيه
+                  {/* حدثت مشكله في نقل الملكيه */}
+                  {Modalerror}
                 </Typography>
                 <Box sx={{
                   width: "20%",
@@ -249,7 +255,7 @@ const Service = () => {
                     background: "#5DBB67",
                     fontSize: 16, fontFamily: "inherit"
                   }} variant="contained" onClick={handleClose}>
-                    تأكيد
+                    اغلاق
                   </Button>
                 </Box>
               </DialogContent>
@@ -281,7 +287,7 @@ const Service = () => {
                     borderRadius: 3,
                     background: "#5DBB67",
                     fontSize: 16, fontFamily: "inherit"
-                  }} variant="contained" onClick={handleClose}>
+                  }} variant="contained" onClick={transferAnimal}>
                     تأكيد
                   </Button>
                 </Box>
