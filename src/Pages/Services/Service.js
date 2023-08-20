@@ -17,11 +17,11 @@ import ScanBarCode from "../../Assets/Logo/ScanBarCode"
 import Anaam from "../../Assets/Images/Anaam.png"
 import Empty from "../../Assets/Images/empty.png"
 
-import { Badge, Box, Button, Container, TextField, Toolbar } from '@mui/material'
+import { Badge, Box, Button, Container, MenuItem, Select, TextField, Toolbar } from '@mui/material'
 // styles
 import "./Services.scss"
 import { Link } from 'react-router-dom';
-import { GetAllTransfers, MainUrl, WalletData } from '../../Constance/ApiConstance';
+import { GetAllTransfers, MainUrl, WalletData, getpropData } from '../../Constance/ApiConstance';
 import { useSelector } from 'react-redux';
 import Loader from '../../Components/Loader/Loader';
 import axios from 'axios';
@@ -29,6 +29,8 @@ const Service = () => {
   const Savedtoken = useSelector(state => state.auth.token);
   const [open, setOpen] = useState(false);
   const [activeCard, setActiveCard] = useState(1)
+  const [animalsData, setAnimalsData] = useState([])
+  const [selectedAnimal, setSelectedAnimal] = useState()
   const [data, setData] = useState([])
   const [buyerId, setBuyerId] = useState([]);
   const [buyerData, setBuyerData] = useState([])
@@ -44,6 +46,7 @@ const Service = () => {
 
   useEffect(() => {
     getInitalData();
+    getPropsData()
   }, []);
 
   useEffect(() => {
@@ -112,73 +115,32 @@ const Service = () => {
   }
 
 
-  const buyData = [
-    {
-      id: 1,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 2,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 3,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 4,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 5,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 6,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 7,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 8,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-    {
-      id: 9,
-      name: "حسام محمد عسكر",
-      date: "5-5-2023",
-      camelName: "اللؤلؤه",
-      barcode: "757edjjdu874878838"
-    },
-  ];
+  const getPropsData = async () => {
+    setLoading(true)
+    const url = MainUrl + getpropData + wallet_id;
 
+    const config = {
+      headers: {
+        Accept: "application/json",
+        Authorization: `bearer ${Savedtoken}`
+      },
+    };
+    axios
+      .get(url, config)
+      .then((res) => {
+        setLoading(false)
+        setAnimalsData(res.data.data.Tokens)
+        console.log(res.data.data.Tokens)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+      });
+  };
 
+  const handleChangeAnimal = (e) => {
+    console.log(e)
+  }
 
   return (
     <>
@@ -356,7 +318,17 @@ const Service = () => {
                           <p>
                             اسم الحيوان
                           </p>
-                          <TextField
+                          <Select
+                            value={selectedAnimal}
+                            onChange={handleChangeAnimal}
+                          >
+                            {
+                              animalsData?.map((item) => (
+                                <MenuItem key={item.WALLET_ID} value={item.NAME}>{item.NAME}</MenuItem>
+                              ))
+                            }
+                          </Select>
+                          {/* <TextField
                             id="outlined-required"
                             placeholder='اسم الحيوان'
                             inputProps={{
@@ -364,7 +336,7 @@ const Service = () => {
                                 textAlign: 'end'
                               },
                             }}
-                          />
+                          /> */}
                         </div>
                       </div>
                     </>

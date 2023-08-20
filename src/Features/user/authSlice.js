@@ -6,7 +6,7 @@ const authSlice = createSlice({
   initialState: {
     token: sessionStorage.getItem('token') || null,
     isLogin: sessionStorage.getItem('token') ? true : false,
-    userData : null
+    userData : null,
   },
   reducers: {
     setToken: (state, action) => {
