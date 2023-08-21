@@ -33,7 +33,7 @@ const Home = () => {
         getInitalData();
         getSalesData();
         getPurchaseData();
-    }, [wallet_id]); 
+    }, [wallet_id]);
 
     const getInitalData = async () => {
         setLoading(true)
