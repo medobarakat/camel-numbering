@@ -7,6 +7,7 @@ const authSlice = createSlice({
     token: sessionStorage.getItem('token') || null,
     isLogin: sessionStorage.getItem('token') ? true : false,
     userData : null,
+    wallet_id:null
   },
   reducers: {
     setToken: (state, action) => {
@@ -27,8 +28,11 @@ const authSlice = createSlice({
     removeUser:(state )=>{
       state.userData = null
     },
+    setWalletId:(state , action)=>{
+      state.wallet_id = action.payload
+    }
   },
 });
 
-export const { setToken , logout , setUser , removeUser } = authSlice.actions;
+export const { setToken , logout , setUser , removeUser ,setWalletId } = authSlice.actions;
 export default authSlice.reducer;
