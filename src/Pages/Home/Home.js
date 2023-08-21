@@ -22,8 +22,9 @@ import axios from 'axios'
 import Loader from '../../Components/Loader/Loader'
 const Home = () => {
     const Savedtoken = useSelector(state => state.auth.token);
-    const [loading, setLoading] = useState(false)
+    // const wallet_id = useSelector(state => state.auth.wallet_id);
     const wallet_id = 2469117966;
+    const [loading, setLoading] = useState(false)
     const [errorText, setErrorText] = useState("")
     const [tokenCount, setTokenCount] = useState(0)
     const [salesCount, setSalesCount] = useState(0)

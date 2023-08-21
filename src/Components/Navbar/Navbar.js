@@ -41,36 +41,8 @@ const Navbar = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const wallet_id = 2469117966;
+    // const wallet_id = useSelector(state => state.auth.wallet_id);
     const Savedtoken = useSelector(state => state.auth.token);
-
-    // useEffect(()=>{
-    //     getInitalData()
-    // },[])
-
-    // const getInitalData = async () => {
-    //     setLoading(true)
-    //      const url = MainUrl + WalletData + wallet_id;
-    //      console.log(url)
-    //     const config = {
-    //         headers: {
-    //           Accept: "application/json",
-    //           Authorization : `bearer ${Savedtoken}`
-    //         },
-    //       };
-    //     axios
-    //         .get(url , config)
-    //         .then((res) => {
-    //             setLoading(false)
-    //             console.log(res.data.data.Wallet)
-    //             setData(res.data.data.Wallet)
-    //             dispatch(setUser(res.data.data.Wallet))
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             setLoading(false)
-    //         });
-    // };
-
 
     const getInitalData = useCallback(async () => {
         setLoading(true);

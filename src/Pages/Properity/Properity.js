@@ -15,9 +15,10 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 const Properity = () => {
   const Savedtoken = useSelector(state => state.auth.token);
+  // const wallet_id = useSelector(state => state.auth.wallet_id);
+  const wallet_id = 2469117966;
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
-  const wallet_id = 2469117966;
 
   const getData = async () => {
     setLoading(true)

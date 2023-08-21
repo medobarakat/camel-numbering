@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -12,11 +11,9 @@ import Transfer from "../../Assets/Logo/Transfer"
 import ImportExportArrows from "../../Assets/Logo/ImportExportArrows"
 import Store from "../../Assets/Logo/Store"
 import ScanBarCode from "../../Assets/Logo/ScanBarCode"
-
 //images
 import Anaam from "../../Assets/Images/Anaam.png"
 import Empty from "../../Assets/Images/empty.png"
-
 import { Badge, Box, Button, Container, MenuItem, Select, TextField, Toolbar } from '@mui/material'
 // styles
 import "./Services.scss"
@@ -41,6 +38,7 @@ const Service = () => {
   const [error, setError] = useState(false)
   const [Modalerror, setModalError] = useState('')
   const wallet_id = 2469117966;
+  // const wallet_id = useSelector(state => state.auth.wallet_id);
   const handleClickOpen = () => {
     if (recieverId && animalsData) {
       setOpen(true);

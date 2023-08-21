@@ -6,11 +6,11 @@ import { Button, Container, MenuItem, Select } from '@mui/material'
 import "./Transactions.scss"
 import TransactionsCard from '../../Components/TransactionsCard/TransactionsCard';
 import { useSelector } from 'react-redux';
-import { GetAllTransfers, MainUrl } from '../../Constance/ApiConstance';
+import { GetAllTransfers, MainUrl, WalletData, getpropData } from '../../Constance/ApiConstance';
 import axios from 'axios';
 import Loader from '../../Components/Loader/Loader';
 const Transactions = () => {
-    const data =
+    const olddata =
         [
             {
                 id: 1,
@@ -65,10 +65,16 @@ const Transactions = () => {
     const Savedtoken = useSelector(state => state.auth.token);
     const [loading, setLoading] = useState(false)
     const wallet_id = 2469117966;
+    // const wallet_id = useSelector(state => state.auth.wallet_id);
+    const [buyerIds, setBuyerIds] = useState([]);
+    const [transfers, setTransfers] = useState([])
+    const [buyerData, setBuyerData] = useState([])
+
     useEffect(() => {
         getInitalData();
     }, []);
 
+  
     const getInitalData = async () => {
         setLoading(true)
         const url = MainUrl + GetAllTransfers + wallet_id;
@@ -82,12 +88,66 @@ const Transactions = () => {
             .get(url, config)
             .then((res) => {
                 setLoading(false)
-                console.log(res.data.data)
+                setTransfers(res.data.data.Transfers)
+                console.log(res.data.data.Transfers)
+                const newWalletIds = [...new Set(res.data.data.Transfers.map(transfer => transfer.NEW_WALLET_ID))];
+                setBuyerIds(newWalletIds)
             })
             .catch((err) => {
                 setLoading(false)
+                console.log(err)
             });
     };
+
+    useEffect(() => {
+        const fetchBuyerData = async () => {
+            const buyerDataArray = [];
+    
+            for (const id of buyerIds) {
+                try {
+                    const walletData = await getWalletData(id);
+                    const buyerData = {
+                        id: id,
+                        FIRSTNAME: walletData.FIRSTNAME,
+                        SECONDNAME: walletData.SECONDNAME
+                    };
+                    buyerDataArray.push(buyerData);
+                } catch (error) {
+                    console.log(`Error fetching data for id ${id}:`, error);
+                }
+            }
+            setBuyerData(buyerDataArray)
+            console.log("Buyer Data Array:", buyerDataArray);
+        };
+    
+        fetchBuyerData();
+    }, [buyerIds]);
+    
+    const getWalletData = async (theId) => {
+        setLoading(true);
+        const url = MainUrl + WalletData + theId;
+    
+        const config = {
+            headers: {
+                Accept: "application/json",
+                Authorization: `bearer ${Savedtoken}`
+            },
+        };
+        
+        try {
+            const response = await axios.get(url, config);
+            setLoading(false);
+            return response.data.data.Wallet;
+        } catch (error) {
+            setLoading(false);
+            throw error;
+        }
+    };
+
+
+
+
+
     return (
         <>
             {
@@ -153,8 +213,8 @@ const Transactions = () => {
                                     </Select>
                                 </div>
                                 <div className='CardWrapper'>
-                                    {data.map((item) => (
-                                        <TransactionsCard key={item.id} data={item} />
+                                    {transfers.map((item) => (
+                                        <TransactionsCard key={item.id} data={item} buyerData={buyerData} />
                                     ))}
                                 </div>
                             </Container>
