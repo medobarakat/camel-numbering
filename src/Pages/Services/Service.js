@@ -167,7 +167,7 @@ const Service = () => {
       "ANIMAL_ID": selectedAnimal.NAME,
       "OLD_WALLET_ID": selectedAnimal.WALLET_ID,
       "NEW_WALLET_ID": recieverId,
-      // "STATE": 0
+       "STATE": 0
     }
     axios
       .post(url, body,config)
@@ -364,7 +364,7 @@ const Service = () => {
                                     key={item.ANIMAL_ID}
                                   >
                                     <div className='firstCol'>
-                                      <p className='buyerName'>{buyerData.FIRSTNAME} {" "} {buyerData.SECONDNAME} {" "} {buyerData.THIRDNAME}</p>
+                                      <p className='buyerName'>{buyerData?.FIRSTNAME} {" "} {buyerData?.SECONDNAME} {" "} {buyerData.THIRDNAME}</p>
                                       <p className='camelName'>{item.ANIMAL_ID}</p>
                                       <div className='iconWrapper'>
                                         <ScanBarCode />

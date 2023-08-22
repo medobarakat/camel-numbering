@@ -8,7 +8,10 @@ import axios from 'axios';
 import { LoginUrl, MainUrl } from "../../Constance/ApiConstance"
 import { useDispatch } from 'react-redux';
 import { setToken, setWalletId } from '../../Features/user/authSlice';
+import { useNavigate } from 'react-router-dom';
+
 const LoginComponent = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch()
     const [errorText, setErrorText] = useState("")
     const [loading, setLoading] = useState(false)
@@ -46,6 +49,7 @@ const LoginComponent = () => {
                 setSucess(true)
                 dispatch(setToken(res.data.token))
                 setNewWalletId()
+                navigate('/');
             })
             .catch((err) => {
                 setErrorText(err.response.data.error);

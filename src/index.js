@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <OAuth2CodePKCEProvider clientId="YOUR_CLIENT_ID" redirectUri="YOUR_REDIRECT_URI">
   <Provider store={store}>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <BrowserRouter>
       <App />   
       </BrowserRouter>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </Provider>
   // </OAuth2CodePKCEProvider>
 );

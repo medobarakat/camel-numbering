@@ -100,7 +100,7 @@ const Navbar = () => {
                                                     <KeyboardArrowDownIcon />
                                                 </div>
                                                 <p>
-                                                    {data.FIRSTNAME}{" "}{data.SECONDNAME}
+                                                    {data?.FIRSTNAME}{" "}{data?.SECONDNAME}
                                                 </p>
                                                 <img src={Img} alt="user" />
                                             </Link>

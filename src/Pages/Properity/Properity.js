@@ -19,6 +19,20 @@ const Properity = () => {
   const wallet_id = 2469117966;
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
+  const [filteredData, setFilteredData] = useState([])
+  const [selectedValue, setSelectedValue] = useState()
+
+  const selectionChangeHandler = (value) => {
+    console.log(value)
+    setSelectedValue(value)
+    if(value === ""){
+      setFilteredData("")
+    }else{
+      setFilteredData(data.filter(item => item.SEX === value))
+    }
+    // const newFiltered = data.filter(item => item.SEX === value)
+    // console.log(newFiltered)
+  }
 
   const getData = async () => {
     setLoading(true)
@@ -35,7 +49,7 @@ const Properity = () => {
       .then((res) => {
         setLoading(false)
         setData(res.data.data.Tokens)
-        console.log(res.data.data.Tokens)
+        console.log(JSON.stringify(res.data.data.Tokens))
       })
       .catch((err) => {
         console.log(err)
@@ -48,8 +62,8 @@ const Properity = () => {
   }, [wallet_id]);
 
 
-  const handleTransfer = async()=>{
-    
+  const handleTransfer = async () => {
+
   }
 
 
@@ -78,31 +92,57 @@ const Properity = () => {
                   }}><SearchIcon sx={{ fill: 'white' }} /></Button>
                   <Select
                     IconComponent={KeyboardArrowDownIcon}
-                    // value={selected}
+                    value={selectedValue}
                     variant="outlined"
-                    // onChange={selectionChangeHandler}
+                    onChange={(e) => selectionChangeHandler(e.target.value)}
+                    placeholder='أختر النوع'
                     sx={{
                       borderRadius: 2,
                       backgroundColor: "white",
                       width: "260px",
                       height: "40px",
+                      textAlign: "right",
                       "& .MuiSvgIcon-root": {
                         right: "unset",
                         left: "7px",
                       },
                     }}>
                     <MenuItem value={""}>
-                      اختر
+                      الكل
+                    </MenuItem>
+                    <MenuItem value={1}>
+                      ذكر
+                    </MenuItem>
+                    <MenuItem value={2}>
+                      انثي
+                    </MenuItem>
+                    <MenuItem value={3}>
+                      حيوان مخصي
                     </MenuItem>
 
                   </Select>
                 </div>
                 <div className='cardsContainer'>
                   {
-                    data.map((item) => (
-                      <CardsWithImg item={item} />
-                    ))
+                    filteredData.length > 0 ? (
+                      <>
+                        {
+                          filteredData.map((item) => (
+                            <CardsWithImg item={item} />
+                          ))
+                        }
+                      </>
+                    ) : (
+                      <>
+                        {
+                          data.map((item) => (
+                            <CardsWithImg item={item} />
+                          ))
+                        }
+                      </>
+                    )
                   }
+
                 </div>
               </div>
               <div>

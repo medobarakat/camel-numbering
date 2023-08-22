@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, Container, MenuItem, Select } from '@mui/material'
@@ -10,58 +10,58 @@ import { GetAllTransfers, MainUrl, WalletData, getpropData } from '../../Constan
 import axios from 'axios';
 import Loader from '../../Components/Loader/Loader';
 const Transactions = () => {
-    const olddata =
-        [
-            {
-                id: 1,
-                name: "اسامه عسكر",
-                camelName: "الميساء",
-                status: "sucess"
-            },
-            {
-                id: 2,
-                name: "مي علاء الدين",
-                camelName: "الميساء",
-                status: "ongoing"
-            },
-            {
-                id: 3,
-                name: "اسامه عسكر",
-                camelName: "الميساء",
-                status: "sucess"
-            },
-            {
-                id: 4,
-                name: "مي علاء الدين",
-                camelName: "الميساء",
-                status: "ongoing"
-            },
-            {
-                id: 5,
-                name: "اسامه عسكر",
-                camelName: "الميساء",
-                status: "sucess"
-            },
-            {
-                id: 6,
-                name: "مي علاء الدين",
-                camelName: "الميساء",
-                status: "ongoing"
-            },
-            {
-                id: 7,
-                name: "اسامه عسكر",
-                camelName: "الميساء",
-                status: "sucess"
-            },
-            {
-                id: 8,
-                name: "مي علاء الدين",
-                camelName: "الميساء",
-                status: "ongoing"
-            }
+    // const olddata =
+    //     [
+    //         {
+    //             id: 1,
+    //             name: "اسامه عسكر",
+    //             camelName: "الميساء",
+    //             status: "sucess"
+    //         },
+    //         {
+    //             id: 2,
+    //             name: "مي علاء الدين",
+    //             camelName: "الميساء",
+    //             status: "ongoing"
+    //         },
+    //         {
+    //             id: 3,
+    //             name: "اسامه عسكر",
+    //             camelName: "الميساء",
+    //             status: "sucess"
+    //         },
+    //         {
+    //             id: 4,
+    //             name: "مي علاء الدين",
+    //             camelName: "الميساء",
+    //             status: "ongoing"
+    //         },
+    //         {
+    //             id: 5,
+    //             name: "اسامه عسكر",
+    //             camelName: "الميساء",
+    //             status: "sucess"
+    //         },
+    //         {
+    //             id: 6,
+    //             name: "مي علاء الدين",
+    //             camelName: "الميساء",
+    //             status: "ongoing"
+    //         },
+    //         {
+    //             id: 7,
+    //             name: "اسامه عسكر",
+    //             camelName: "الميساء",
+    //             status: "sucess"
+    //         },
+    //         {
+    //             id: 8,
+    //             name: "مي علاء الدين",
+    //             camelName: "الميساء",
+    //             status: "ongoing"
+    //         }
 
-        ]
+    //     ]
     const Savedtoken = useSelector(state => state.auth.token);
     const [loading, setLoading] = useState(false)
     const wallet_id = 2469117966;
@@ -227,4 +227,4 @@ const Transactions = () => {
     )
 }
 
-export default Transactions
+export default memo(Transactions)
