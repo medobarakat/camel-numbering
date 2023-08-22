@@ -20,14 +20,14 @@ const Properity = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
-  const [selectedValue, setSelectedValue] = useState()
+  const [selectedValue, setSelectedValue] = useState(0)
 
   const selectionChangeHandler = (value) => {
     console.log(value)
     setSelectedValue(value)
-    if(value === ""){
+    if (value === 0) {
       setFilteredData("")
-    }else{
+    } else {
       setFilteredData(data.filter(item => item.SEX === value))
     }
     // const newFiltered = data.filter(item => item.SEX === value)
@@ -107,7 +107,7 @@ const Properity = () => {
                         left: "7px",
                       },
                     }}>
-                    <MenuItem value={""}>
+                    <MenuItem value={0}>
                       الكل
                     </MenuItem>
                     <MenuItem value={1}>
