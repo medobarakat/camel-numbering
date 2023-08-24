@@ -23,15 +23,12 @@ const Properity = () => {
   const [selectedValue, setSelectedValue] = useState(0)
 
   const selectionChangeHandler = (value) => {
-    console.log(value)
     setSelectedValue(value)
     if (value === 0) {
       setFilteredData("")
     } else {
       setFilteredData(data.filter(item => item.SEX === value))
     }
-    // const newFiltered = data.filter(item => item.SEX === value)
-    // console.log(newFiltered)
   }
 
   const getData = async () => {

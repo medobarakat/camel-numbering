@@ -20,6 +20,13 @@ const TransactionsCard = ({ data, buyerData }) => {
                 }
                 {/* still 4 and 3 */}
                 {
+                    data?.State === 3 && (
+                        <>
+                            <ShopBag />
+                        </>
+                    )
+                }
+                {
                     data?.State === 4 && (
                         <>
                             <ShopBag />
@@ -46,13 +53,19 @@ const TransactionsCard = ({ data, buyerData }) => {
                 }
                 {/* still 4 and 3 */}
                 {
-                    data?.State === 4 && (
+                    data?.State === 3 && (
                         <div className='accepted'>
                         <p>تمت الموافقه</p>
                     </div>
                     )
                 }
-
+{
+                    data?.State === 4 && (
+                        <div className='failure'>
+                        <p>تمت الرفض</p>
+                    </div>
+                    )
+                }
             </div>
         </div>
     )

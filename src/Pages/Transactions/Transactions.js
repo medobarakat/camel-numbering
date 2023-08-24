@@ -10,58 +10,6 @@ import { GetAllTransfers, MainUrl, WalletData, getpropData } from '../../Constan
 import axios from 'axios';
 import Loader from '../../Components/Loader/Loader';
 const Transactions = () => {
-    // const olddata =
-    //     [
-    //         {
-    //             id: 1,
-    //             name: "اسامه عسكر",
-    //             camelName: "الميساء",
-    //             status: "sucess"
-    //         },
-    //         {
-    //             id: 2,
-    //             name: "مي علاء الدين",
-    //             camelName: "الميساء",
-    //             status: "ongoing"
-    //         },
-    //         {
-    //             id: 3,
-    //             name: "اسامه عسكر",
-    //             camelName: "الميساء",
-    //             status: "sucess"
-    //         },
-    //         {
-    //             id: 4,
-    //             name: "مي علاء الدين",
-    //             camelName: "الميساء",
-    //             status: "ongoing"
-    //         },
-    //         {
-    //             id: 5,
-    //             name: "اسامه عسكر",
-    //             camelName: "الميساء",
-    //             status: "sucess"
-    //         },
-    //         {
-    //             id: 6,
-    //             name: "مي علاء الدين",
-    //             camelName: "الميساء",
-    //             status: "ongoing"
-    //         },
-    //         {
-    //             id: 7,
-    //             name: "اسامه عسكر",
-    //             camelName: "الميساء",
-    //             status: "sucess"
-    //         },
-    //         {
-    //             id: 8,
-    //             name: "مي علاء الدين",
-    //             camelName: "الميساء",
-    //             status: "ongoing"
-    //         }
-
-    //     ]
     const Savedtoken = useSelector(state => state.auth.token);
     const [loading, setLoading] = useState(false)
     const wallet_id = 2469117966;
@@ -69,12 +17,25 @@ const Transactions = () => {
     const [buyerIds, setBuyerIds] = useState([]);
     const [transfers, setTransfers] = useState([])
     const [buyerData, setBuyerData] = useState([])
+    const [selectedValue, setSelectedValue] = useState(0)
+    const [filteredData, setFilteredData] = useState([])
+
+
+
+    const selectionChangeHandler = (value) => {
+        setSelectedValue(value)
+        if (value === 0) {
+            setFilteredData("")
+        } else {
+            setFilteredData(transfers.filter(item => item.State === value))
+        }
+    }
 
     useEffect(() => {
         getInitalData();
     }, []);
 
-  
+
     const getInitalData = async () => {
         setLoading(true)
         const url = MainUrl + GetAllTransfers + wallet_id;
@@ -102,7 +63,7 @@ const Transactions = () => {
     useEffect(() => {
         const fetchBuyerData = async () => {
             const buyerDataArray = [];
-    
+
             for (const id of buyerIds) {
                 try {
                     const walletData = await getWalletData(id);
@@ -119,21 +80,19 @@ const Transactions = () => {
             setBuyerData(buyerDataArray)
             console.log("Buyer Data Array:", buyerDataArray);
         };
-    
+
         fetchBuyerData();
     }, [buyerIds]);
-    
+
     const getWalletData = async (theId) => {
         setLoading(true);
         const url = MainUrl + WalletData + theId;
-    
         const config = {
             headers: {
                 Accept: "application/json",
                 Authorization: `bearer ${Savedtoken}`
             },
         };
-        
         try {
             const response = await axios.get(url, config);
             setLoading(false);
@@ -143,11 +102,6 @@ const Transactions = () => {
             throw error;
         }
     };
-
-
-
-
-
     return (
         <>
             {
@@ -192,30 +146,51 @@ const Transactions = () => {
                                     </Select>
                                     <Select
                                         IconComponent={KeyboardArrowDownIcon}
-                                        // value={selected}
+                                        onChange={(e) => selectionChangeHandler(e.target.value)}
                                         variant="outlined"
-                                        // onChange={selectionChangeHandler}
+                                        value={selectedValue}
+                                        placeholder='الحاله'
                                         sx={{
                                             borderRadius: 2,
                                             backgroundColor: "white",
                                             width: "260px",
                                             height: "40px",
-                                            marginLeft: "20px",
+                                            textAlign: "right",
                                             "& .MuiSvgIcon-root": {
                                                 right: "unset",
                                                 left: "7px",
                                             },
                                         }}>
-                                        <MenuItem value={""}>
-                                            اختر
+                                        <MenuItem value={0}>
+                                            الحاله
                                         </MenuItem>
-
+                                        <MenuItem value={2}>
+                                            قيد التنفيذ
+                                        </MenuItem>
+                                        <MenuItem value={3}>
+                                            تمت الموافقه
+                                        </MenuItem>
+                                        <MenuItem value={4}>
+                                            تم الرفض
+                                        </MenuItem>
                                     </Select>
                                 </div>
                                 <div className='CardWrapper'>
-                                    {transfers.map((item) => (
-                                        <TransactionsCard key={item.id} data={item} buyerData={buyerData} />
-                                    ))}
+                                    {
+                                        filteredData.length > 0 ? (
+                                            <>
+                                                {filteredData.map((item) => (
+                                                    <TransactionsCard key={item.id} data={item} buyerData={buyerData} />
+                                                ))}
+                                            </>
+                                        ) : (
+                                            <>
+                                                {transfers.map((item) => (
+                                                    <TransactionsCard key={item.id} data={item} buyerData={buyerData} />
+                                                ))}
+                                            </>
+                                        )
+                                    }
                                 </div>
                             </Container>
                         </div>
